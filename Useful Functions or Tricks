@@ -1,0 +1,7 @@
+isalnum() -> check if all characters are alphanumeric
+
+Can use it to check if the all characters in text are alphanumeric or just a single character
+
+Example:
+"sfA131".isalnum()
+"2".isalnum()
