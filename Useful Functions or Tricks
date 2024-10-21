@@ -14,3 +14,13 @@ heapq.heappush(heap, element)
 element can be a turple, e.g. (count, e).
 When use heapq.heappop, it will only consider the 1st element in the turple, i.e. count in the above example
 heapq.heappop(heap) -> pop the 1st element
+
+
+dictionary.items() -> get turple
+Example:
+{"a": 1, "b": "2"}.items = [("a", 1), ("b", 2)]
+
+You can specify the key of sorted([("a", 1), ("b", 2)], key=lambda x: x[1])
+Refer Top K Frequent Elements - sort.py
+
+You can sort it in descending order by using sorted(array, reverse=True)
