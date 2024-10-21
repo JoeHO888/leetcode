@@ -24,3 +24,11 @@ You can specify the key of sorted([("a", 1), ("b", 2)], key=lambda x: x[1])
 Refer Top K Frequent Elements - sort.py
 
 You can sort it in descending order by using sorted(array, reverse=True)
+
+
+Patterns:
+Find top K -> heap
+
+If multiple element map to a same value & we need to sort by that value -> bucket sort
+Example: {"element1": count1, "element2": count2, ...}, count1,2,... may be same. & We need to sort or make decision by count -> time to use bucket sort
+As within each bucket, you dont need to do another sort -> save time
