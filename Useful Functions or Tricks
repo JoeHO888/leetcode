@@ -23,6 +23,10 @@ Example:
 You can specify the key of sorted([("a", 1), ("b", 2)], key=lambda x: x[1])
 Refer Top K Frequent Elements - sort.py
 
+It can support multiple level of sort, e.g. sorted([("a", 1), ("b", 2)], key=lambda x: (x[1], x[0]))
+Refer Top K Frequent Words - sort.py
+
+
 You can sort it in descending order by using sorted(array, reverse=True)
 
 
