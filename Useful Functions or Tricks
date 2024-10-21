@@ -5,3 +5,12 @@ Can use it to check if the all characters in text are alphanumeric or just a sin
 Example:
 "sfA131".isalnum()
 "2".isalnum()
+
+
+
+heapq to form priority queue or min heap.
+heap = []
+heapq.heappush(heap, element)
+element can be a turple, e.g. (count, e).
+When use heapq.heappop, it will only consider the 1st element in the turple, i.e. count in the above example
+heapq.heappop(heap) -> pop the 1st element
