@@ -36,3 +36,9 @@ Find top K -> heap
 If multiple element map to a same value & we need to sort by that value -> bucket sort
 Example: {"element1": count1, "element2": count2, ...}, count1,2,... may be same. & We need to sort or make decision by count -> time to use bucket sort
 As within each bucket, you dont need to do another sort -> save time
+
+# Dictionary Get function
+Example:
+get(<key>, default_value)
+{"a": 1}.get("a", 0) = 1
+{"a": 1}.get("b", 0) = 0
