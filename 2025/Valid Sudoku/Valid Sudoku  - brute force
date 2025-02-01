@@ -1,0 +1,45 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+
+        def isValidDigit(digit):
+            return (int(digit) >= 1) and (int(digit) <= 9)
+
+        # Check any repeated digits in each row 
+        for i in range(len(board)):
+            digits_appeared_in_a_row = set()
+            for j in range(len(board[i])):
+                digit = board[i][j]
+                if digit != ".":
+                    if digit in digits_appeared_in_a_row:
+                        return False
+                    else:
+                        digits_appeared_in_a_row.add(digit)
+
+        # Check any repeated digits in each column
+        for j in range(len(board[0])):
+            digits_appeared_in_a_column = set()
+            for i in range(len(board)):
+                digit = board[i][j]
+                if digit != ".":
+                    if digit in digits_appeared_in_a_column:
+                        return False
+                    else:
+                        digits_appeared_in_a_column.add(digit)               
+
+        # Check any repeated digits in each sub-box
+        for sub_box_index in range(9):
+            digits_appeared_in_a_subbox = set()
+            for i in range((3 * (sub_box_index//3)), (3 * (sub_box_index//3)) + 3):
+                for j in range((3 * (sub_box_index % 3)), (3 * (sub_box_index % 3)) + 3):
+                    digit = board[i][j]
+                    if digit != ".":
+                        if digit in digits_appeared_in_a_subbox:
+                            return False
+                        else:
+                            digits_appeared_in_a_subbox.add(digit)
+        
+        return True
+
+        
+        
+        
