@@ -1,0 +1,40 @@
+# Instead of thinking the old min, think about the min so far
+# It gets rid of the infinity problem, as you don't need to add infinite value
+# to the stack
+# https://www.youtube.com/watch?v=qkLl7nAwDPo
+
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+
+        self.stack.append(val)
+
+        if self.minStack:
+            min_value_so_far = min(val, self.minStack[-1])
+        else:
+            min_value_so_far = val
+            
+        self.minStack.append(min_value_so_far)
+        
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minStack.pop()
+        
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+        
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()

@@ -1,0 +1,42 @@
+# The main challenge is get the old min after the new min being popped
+# So I have a stack storing the old min. The least elegant is having infinity in the old stack
+# It makes tricky to figure out when should I do the append on the prev min stack
+
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.curr_min = float("inf")
+        self.prev_min_list = []
+        
+
+    def push(self, val: int) -> None:
+        
+        # Add current minimum value to prev_min array
+        self.prev_min_list.append(self.curr_min)
+        
+        self.stack.append(val)
+
+        if val < self.curr_min:
+            self.curr_min = val
+
+    def pop(self) -> None:
+        self.stack.pop()
+
+        # Get the prev min
+        self.curr_min = self.prev_min_list.pop()
+        
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.curr_min
+        
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
