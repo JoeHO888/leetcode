@@ -1,0 +1,26 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+
+        # left pointer points to the zero indexed element
+        # right pointer points the last element
+        # <=, for the case of single element, e.g. [1]
+        # Check every case, including left == right
+
+        while left <= right:
+            mid = (left + right) // 2
+            # (l + r) // 2 can lead to overflow
+            # mid = l + ((r - l) // 2) 
+            # Image l & r are 2^31
+            # Adding them together will lead to overflow
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        
+        return -1
+
+        

@@ -1,0 +1,18 @@
+class Solution:
+    def binary_search(self, l, r, nums, target):
+        if l <= r:
+            m = (l + r) // 2
+            if nums[m] == target:
+                return m
+            elif nums[m] > target:
+                r = m - 1
+                return self.binary_search(l, r, nums, target)
+            else:
+                l = m + 1
+                return self.binary_search(l, r, nums, target)
+        else:
+            return -1
+    def search(self, nums: List[int], target: int) -> int:
+        l = 0
+        r = len(nums) - 1
+        return self.binary_search(l, r, nums, target)
