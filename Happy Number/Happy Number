@@ -1,0 +1,22 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        
+        n_str = str(n)
+
+        sums = set()
+
+        while True:
+
+            if n_str in sums:
+                break
+            else:
+                sums.add(n_str)            
+            
+            digit_sum = 0
+
+            for c in n_str:
+                digit_sum += (int(c)) ** 2
+            
+            n_str = str(digit_sum)
+            
+        return n_str == "1"

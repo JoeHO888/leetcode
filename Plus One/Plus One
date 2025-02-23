@@ -1,0 +1,32 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+
+        remain = 0
+
+        for i in range(len(digits) - 1, -1 ,-1):
+            digit = digits[i]
+            if i == len(digits) - 1:
+                digit, remain = (digit + 1) % 10, (digit + 1) // 10
+            else:
+                digit, remain = (digit + remain) % 10, (digit + remain) // 10
+            
+            digits[i] = digit
+        
+        if remain:
+            return [1] + digits
+        
+        return digits
+
+
+        numStr = ""
+        for i in range(len(digits)):
+            numStr += str(digits[i])
+        
+        num = int(numStr)
+
+        resNum = num + 1
+        resNumStr = str(resNum)
+
+        return [int(c) for c in resNumStr]
+        
+        

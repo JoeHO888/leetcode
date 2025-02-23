@@ -1,0 +1,63 @@
+import math
+
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+
+        
+
+
+
+
+
+
+
+
+
+
+
+        fleet = 0
+        curr_fleet_finish_time = 0
+        sorted_car = sorted(zip(position, speed), reverse=True)
+        for car_pos, car_speed in sorted_car:
+            finish_time = float(target - car_pos) / car_speed
+            if finish_time > curr_fleet_finish_time:
+                fleet += 1
+                curr_fleet_finish_time = finish_time
+        
+        return fleet
+
+
+
+
+
+
+
+
+
+        # Sort Position
+        # Loop from the end to beginning
+        # Calculate the time required to reach target
+        # Compare the time of current car with the current largest car
+        # If the time of current car is larger, then it can never catch
+        # It will be the lead of another car fleet
+        # i.e. car fleet += 1
+        # If the time is smaller -> it can catch one day, no change in car fleet number
+
+        car_fleet = 0
+        largest_time_to_reach_target = 0
+        sorted_car_info = sorted(zip(position, speed))
+        for car_index in range(len(sorted_car_info) - 1, -1, -1):
+            p, s = sorted_car_info[car_index]
+            print(p,s)
+            time_to_reach_target = float(target - p) / s
+            print(time_to_reach_target)
+            if time_to_reach_target > largest_time_to_reach_target:
+                car_fleet += 1
+                largest_time_to_reach_target = time_to_reach_target
+            
+            print(car_fleet)
+            print()
+        
+        return car_fleet
+
+

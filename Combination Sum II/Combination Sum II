@@ -1,0 +1,28 @@
+class Solution:
+    def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        self.res = []
+        self.total = 0
+        self.curr = []
+
+        def dfs(i):
+            if self.total == target:
+                self.res.append(self.curr.copy())
+                return
+            if i >= len(nums) or self.total > target:
+                return
+
+            currVal = nums[i]
+            self.curr.append(nums[i])
+            self.total += nums[i]
+            dfs(i+1)
+            
+            self.total -= nums[i]
+            self.curr.pop()
+
+            while i < len(nums) and nums[i] == currVal:
+                i += 1
+            dfs(i)
+
+        dfs(0)
+        return self.res

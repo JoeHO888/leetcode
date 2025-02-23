@@ -1,0 +1,23 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.res = []
+        self.subset = []
+
+        def addSubset(nums, numIndex):
+            if numIndex >= len(nums):
+                self.res.append(self.subset.copy())
+                return
+            
+            self.subset.append(nums[numIndex])
+            
+            addSubset(nums, numIndex + 1)
+
+            self.subset.pop()
+            addSubset(nums, numIndex + 1)
+        
+        addSubset(nums, 0)
+
+        return self.res
+
+
+        

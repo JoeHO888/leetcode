@@ -1,0 +1,32 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+
+        def areOverlapped(i1, i2):
+            return (i1[0] <= i2[0] and i2[0] <= i1[1]) or (i2[0] <= i1[0] and i1[0] <= i2[1])
+        
+        def mergeIntervals(i1, i2):
+            return [min(i1[0], i2[0]), max(i1[1], i2[1])]
+
+        res = []
+
+        intervals.sort(key=lambda x: x[0])
+
+        for i in range(len(intervals)):
+            currentInterval = intervals[i]
+            if res:
+                prevInterval = res.pop()
+
+                if areOverlapped(prevInterval, currentInterval):
+                    mergedInterval = mergeIntervals(prevInterval, currentInterval)
+                    res.append(mergedInterval)
+                else:
+                    res.append(prevInterval)
+                    res.append(currentInterval)
+            
+            else:
+                res.append(currentInterval)
+        
+        return res
+
+
+        

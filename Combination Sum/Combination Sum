@@ -1,0 +1,26 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.candidates = candidates
+        self.res = []
+        self.combinations = []
+        self.sum = 0
+        def backtrack(currentIndex):
+            if self.sum > target:
+                return
+            
+            if self.sum == target:
+                self.res.append(self.combinations.copy())
+            
+            for i in range(currentIndex, len(self.candidates)):
+                num = self.candidates[i]
+                self.combinations.append(num)
+                self.sum += num
+                backtrack(i)
+                self.combinations.pop()
+                self.sum -= num
+        
+        backtrack(0)
+        return self.res
+
+
+        

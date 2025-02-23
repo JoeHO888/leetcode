@@ -1,0 +1,51 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+
+        res = []
+
+        m = len(matrix)
+        n = len(matrix[0])
+
+        hStart, hEnd = 0, n
+        vStart, vEnd = 0, m
+
+        while True:
+
+            # Right to Left
+            if hStart < hEnd and vStart <vEnd:
+                for j in range(hStart, hEnd):
+                    res.append(matrix[vStart][j])
+            else:
+                break
+            
+            vStart += 1
+            
+            # Top to Bottom
+            if hStart < hEnd and vStart <vEnd:
+                for i in range(vStart, vEnd):
+                    res.append(matrix[i][hEnd - 1])
+            else:
+                break
+            
+            hEnd -= 1
+
+            # Right to Left
+            if hStart < hEnd and vStart <vEnd:
+                for j in range(hEnd - 1, hStart - 1, -1):
+                    res.append(matrix[vEnd - 1][j])
+            else:
+                break
+            
+            vEnd -= 1
+
+            # Bottom to Top
+            if hStart < hEnd and vStart <vEnd:
+                for i in range(vEnd - 1, vStart - 1, -1):
+                    res.append(matrix[i][hStart])
+            else:
+                break
+            
+            hStart += 1
+
+        return res
+

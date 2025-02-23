@@ -1,0 +1,31 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        operators = set(["+", "-", "*", "/"])
+
+        for token in tokens:
+            
+            # Integer token
+            if not token in operators:
+                stack.append(int(token))
+            else:
+                # As it's a binary operator
+                # Valid expression is guaranteed
+                # Pop 2 elements from the stack & do the operation
+
+                element_a = stack.pop()
+                element_b = stack.pop()
+
+                if token == "+":
+                    val =  element_b +  element_a
+                elif token == "-":
+                    val = element_b - element_a
+                elif token == "*":
+                    val = element_b * element_a
+                else:
+                    val = int(float(element_b) / float(element_a))
+                
+                stack.append(val)
+        return stack.pop()
+
+        

@@ -1,0 +1,20 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        bracketsMap = {")": "(", "}": "{", "]": "["}
+
+        for c in s:
+            if c == ")" or c == "}" or c == "]":
+                if not stack:
+                    return False
+                
+                lastBracket = stack.pop()
+                if lastBracket != bracketsMap[c]:
+                    return False
+            
+            else:
+                stack.append(c)
+        return len(stack) == 0
+
+
+        

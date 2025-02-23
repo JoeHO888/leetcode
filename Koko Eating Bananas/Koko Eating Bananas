@@ -1,0 +1,27 @@
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+
+        speed_lower_bound = 1
+        speed_upper_bound = max(piles)
+
+        curr_speed = float("inf")
+
+        while speed_lower_bound <= speed_upper_bound:
+            print(speed_lower_bound, speed_upper_bound)
+
+            mid_speed = (speed_lower_bound + speed_upper_bound) // 2
+
+            hours = 0
+            for pile in piles:
+                hours += (pile // mid_speed) + ((pile % mid_speed) > 0)
+            
+            if hours > h:
+                speed_lower_bound = mid_speed + 1
+            else:
+                curr_speed = min(curr_speed, mid_speed)
+                speed_upper_bound = mid_speed - 1
+        
+        return curr_speed
+
+
+        

@@ -1,0 +1,28 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+
+#        goal = len(nums) - 1
+
+#        for i in range(len(nums) - 2, -1, -1):
+#            if nums[i] + i >= goal:
+#                goal = i
+        
+#        return goal == 0
+
+        curr = 0
+
+        while curr < len(nums) - 1:
+            maxStep = nums[curr]
+            maxNextNextIndex = curr
+            nextBestIndex = curr
+
+            if maxStep == 0:
+                break
+
+            for i in range(curr + 1, min(len(nums), curr + maxStep + 1)):
+                if nums[i] + i > maxNextNextIndex:
+                    maxNextNextIndex = nums[i] + i
+                    nextBestIndex = i
+
+            curr = nextBestIndex
+        return curr >= len(nums) - 1

@@ -1,0 +1,34 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        
+        initialCount = [0] * 26
+
+        for c in s1:
+            initialCount[ord(c) - ord("a")] += 1
+        
+        # We have a count array storing occurrence of character of s1
+        count = initialCount.copy()
+
+        l, r = 0, 0
+
+        while r < len(s2):
+
+            lIndex = ord(s2[l]) - ord("a")
+            rIndex = ord(s2[r]) - ord("a")
+
+            if not initialCount[rIndex]:
+                count = initialCount.copy()
+                r += 1
+                l = r
+            else:
+                if count[rIndex] > 0:
+                    count[rIndex] -= 1
+                    r += 1
+                else:
+                    count[lIndex] += 1
+                    l += 1
+
+            if max(count) == 0:
+                break
+        return max(count) == 0
+            

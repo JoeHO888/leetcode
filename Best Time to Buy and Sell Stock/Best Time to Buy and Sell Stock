@@ -1,0 +1,15 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        bDay, sDay = 0, 1
+        profit = 0
+
+        while sDay < len(prices):
+            currProfit = prices[sDay] - prices[bDay]
+            profit = max(profit, currProfit)
+
+            if currProfit < 0:
+                bDay = sDay
+            sDay += 1
+        
+        return profit
+        

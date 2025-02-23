@@ -1,0 +1,21 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        temperature_stack = []
+
+        days = [0] * len(temperatures)
+
+        for temmperature_index in range(len(temperatures)): 
+            while temperature_stack:
+                temperature, day_num = temperature_stack[-1]
+                if temperature < temperatures[temmperature_index]:
+                    temperature_stack.pop()
+                    days[day_num] = temmperature_index - day_num
+                else:
+                    break
+            temperature_stack.append((temperatures[temmperature_index], temmperature_index))
+        
+        return days
+
+
+
+        

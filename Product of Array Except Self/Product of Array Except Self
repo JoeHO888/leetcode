@@ -1,0 +1,77 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+
+        products = [1] * len(nums)
+        current_suffix_product = 1
+
+        for i in range(1, len(nums)):
+            products[i] = products[i - 1] * nums[i - 1]
+        
+
+        for i in range(len(nums) - 2, -1, -1):
+            current_suffix_product *= nums[i+1]
+            products[i] *=  current_suffix_product
+        
+        return products
+        
+        prefix = [1] * len(nums)
+        suffix = [1] * len(nums)
+        products = []
+
+        for i in range(1, len(nums)):
+            prefix[i] = prefix[i - 1] * nums[i - 1]
+        
+        for i in range(len(nums) - 2, -1, -1):
+            suffix[i] = suffix[i + 1] * nums[i + 1]
+
+        for i in range(len(nums)):
+            products.append(prefix[i] * suffix[i])
+        
+        return products
+
+
+# Two arrays storing prev & after products        
+        prev_products = []
+        after_products = []
+        products = []
+
+        for i in range(len(nums)):
+            if prev_products:
+                prev_products.append(prev_products[i - 1] * nums[i - 1])
+            else:
+                prev_products.append(1)
+            
+
+# [ a, b, c]
+# b = 1, 3 - 1 - 1 + 1-> c
+# a = 0, 3 - 1 - 2 + 1 -> b
+# [ c, b, a]
+
+        for i in range(len(nums)):
+            if after_products:
+                after_products.append(after_products[i - 1] * nums[ len(nums) - 1 - i + 1])
+            # Last Element
+            else:
+                after_products.append(1)
+            
+
+        for i in range(len(nums)):
+            products.append(prev_products[i] * after_products[len(nums) - 1 - i])
+
+        return products
+
+
+# Time Limit Exceeded
+        products = []
+
+        for i in range(len(nums)):
+            product = 1
+            for j in range(len(nums)):
+                if j != i:
+                    product *= nums[j]
+            products.append(product)
+        
+        return products
+
+        

@@ -1,0 +1,49 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+
+        self.res = []
+        self.partitionIndexes = []
+
+
+        def isPalindromeString(subString):
+            l, r = 0, len(subString) - 1
+
+            while l <= r:
+                if subString[l] != subString[r]:
+                    return False
+                
+                l += 1
+                r -= 1
+            
+            return True
+
+        def getAllSubstring(indexes):
+            substrings = []
+            prev = 0
+            for index in indexes:
+                subString = s[prev:index]
+                prev = index
+                substrings.append(subString)
+            return substrings
+
+        def isValidpartition(indexes):
+            substrings = getAllSubstring(indexes)
+            for substring in substrings:
+                if not isPalindromeString(substring):
+                    return False
+            return True
+        
+        def backtrack(currentIndex):
+            if currentIndex == len(s) + 1:
+                if isValidpartition(self.partitionIndexes):
+                    self.res.append(getAllSubstring(self.partitionIndexes.copy()))
+            
+            for i in range(currentIndex, len(s) + 1):
+                self.partitionIndexes.append(i)
+                backtrack(i + 1)
+                self.partitionIndexes.pop()
+        
+        backtrack(1)
+        return self.res
+
+        

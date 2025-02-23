@@ -1,0 +1,72 @@
+class Solution:
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+
+        # Find if there's any triplet that has X,Y,Z equaling to X', Y', Z'
+        
+        # If Yes
+        # These triplets can be the same -> i.e. no operation needed to be done, we have it already
+        # at least 2 of them are different -> we can get target via operation
+        # E.g. Target: [2,7,5], triplets: [2,5,3], [1,7,5], [1,7,5] -> [2,7,5]
+
+        foundX = False
+        foundY = False
+        foundZ = False
+
+        for i in range(len(triplets)):
+            if triplets[i][0] == target[0] and triplets[i][1] <= target[1] and triplets[i][2] <= target[2]:
+                foundX = True
+
+                
+            if triplets[i][0] <= target[0] and triplets[i][1] == target[1] and triplets[i][2] <= target[2]:
+                foundY = True
+
+            if triplets[i][0] <= target[0] and triplets[i][1] <= target[1] and triplets[i][2] == target[2]:
+                foundZ = True
+
+        return foundX and foundY and foundZ
+
+
+
+        # Phrase 1
+        # Find triplets which all of its elements less than or equal to targets -> add them to a set
+
+        # Phrase 2
+        # For all triplets, find all of them with 1st, 2nd or 3rd elements are the same as the 1st, 2nd or 3rd element of target respectively
+        # and other elements less than or equal to
+
+        # If we cannot find 3 triplets satisfying phrase 2 -> failed
+
+        # Check if the elements found in phrase 2 are the only onese , 
+        # phrase1's triplets is the only element
+        # and any of phrase 2 triplets is the same as phrase1's triplets
+
+
+
+        
+
+        # For first element, find triplet has 1st element equals to target's 1st element and other elements less than others of target
+        # If found, if number more than 2
+
+        # Find 2 triplets
+        # one of them has 1st element less than or equal to target's 1st element
+        # its' 2nd element less than or equal to target's 2nd element
+        # its' 3rd element less than or equal to target's 3rd element
+        # one of them has 1st element == target's 1st element
+        # its' 2nd element less than or equal to target's 2nd element
+        # its' 3rd element less than or equal to target's 3rd element 
+
+        # one of them has 2nd element less than or equal to target's 2nd element
+        # its' 1st element less than or equal to target's 1st element
+        # its' 3rd element less than or equal to target's 3rd element
+        # one of them has 2nd element == target's 2nd element
+        # its' 1st element less than or equal to target's 1st element
+        # its' 3rd element less than or equal to target's 3rd element 
+
+        # one of them has 3rd element less than or equal to target's 3rd element
+        # its' 2nd element less than or equal to target's 2nd element
+        # its' 1st element less than or equal to target's 1st element
+        # one of them has 1st element == target's 1st element
+        # its' 2nd element less than or equal to target's 2nd element
+        # its' 1st element less than or equal to target's 1st element                        
+
+        

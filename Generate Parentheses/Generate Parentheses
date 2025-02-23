@@ -1,0 +1,38 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+
+
+# Brutal Force
+
+        all_combinations = []
+        res = []
+
+        self.generate_all_combinations(2*n, all_combinations, "")
+
+        for combination in all_combinations:
+            if self.is_valid_pair(combination):
+                res.append(combination)
+
+        return res
+    
+    def is_valid_pair(self, pair):
+        stack = []
+        for c in pair:
+            if c == ")":
+                if stack and stack[-1] == "(":
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+        return len(stack) == 0
+
+    def generate_all_combinations(self, character_left, all_combinations, prefix=""):
+        if character_left == 1:
+            all_combinations.append(prefix + ")")
+            all_combinations.append(prefix + "(")
+        else:
+            prefix_with_open_parenthes = prefix + "("
+            prefix_with_close_parenthes = prefix + ")"
+            self.generate_all_combinations(character_left - 1, all_combinations, prefix_with_open_parenthes)
+            self.generate_all_combinations(character_left - 1, all_combinations, prefix_with_close_parenthes)

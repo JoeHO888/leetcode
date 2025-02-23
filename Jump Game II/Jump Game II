@@ -1,0 +1,20 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+
+        curr = 0
+        jump = 0
+
+        while curr <= len(nums) - 2:
+            maxJump = nums[curr]
+            farthest = curr 
+            nextBestIndex = curr
+
+            for i in range(curr + 1, min(len(nums), nums[curr] + curr + 1)):
+                if min(len(nums) - 1, nums[i] + i ) >= farthest:
+                    farthest = min(len(nums) - 1, nums[i] + i )
+                    nextBestIndex = i
+            curr = nextBestIndex
+            jump += 1
+        
+        return jump
+        

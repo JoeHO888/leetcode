@@ -1,0 +1,41 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+
+        def helper(x, n):
+            if n == 0:
+                return 1
+            
+            res = helper(x*x, n//2)
+            if n % 2 == 1:
+                return res * x
+            else:
+                return res
+        
+        if n < 0:
+            return 1/helper(x, -n)
+        return helper(x,n)
+
+
+
+        res = 1
+
+        positiveN = abs(n)
+        currPower = 1
+        currVal = x
+
+        while positiveN > 0:
+
+            if currPower*2 > positiveN:
+                positiveN -= currPower
+                res = res * currVal
+                currPower = 1
+                currVal = x
+            else:
+                currPower *= 2
+                currVal = currVal*currVal
+
+        if n < 0:
+            res = 1/res
+
+        return res
+        

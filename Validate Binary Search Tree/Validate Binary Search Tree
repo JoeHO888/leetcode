@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+        def dfs(node):
+            if not node:
+                return -float("inf"), float("inf"), True
+
+            ####
+            # This part can be skipped
+            if not node.left and not node.right:
+                subTreeMaxVal = node.val
+                subTreeMinVal = node.val
+                return subTreeMaxVal, subTreeMinVal, True
+            ####
+            
+            leftSubTreeMaxVal, leftSubTreeMinVal, isLeftSubTreeValid = dfs(node.left)
+            rightSubTreeMaxVal, rightSubTreeMinVal, isRightSubTreeValid = dfs(node.right)
+
+            isValidTree = (node.val > leftSubTreeMaxVal and node.val < rightSubTreeMinVal) and (isLeftSubTreeValid) and (isRightSubTreeValid)
+
+            subTreeMaxVal = max([leftSubTreeMaxVal, node.val, rightSubTreeMaxVal])
+            subTreeMinVal = min([leftSubTreeMinVal, node.val, rightSubTreeMinVal])
+
+            return subTreeMaxVal, subTreeMinVal, isValidTree
+
+        _, _, isValidTree = dfs(root)
+        return isValidTree
+            
+
+        
+
+
+        
